@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Sarthak! ❤️🍫🏏</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet">
+
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <style>
+    :root {
+      --dark-choco: #23120B;
+      --fudge-choco: #382216;
+      --milk-choco: #543310;
+      --caramel: #C67D38;
+      --caramel-light: #E09F5E;
+      --cream: #FFFDF9;
+      --cream-soft: #FBF4E9;
+      --gold: #FFD700;
+      --gold-dark: #C69214;
+      --rcb-red: #D71920;
+      --rcb-dark-red: #8B0000;
+      --rcb-gold: #E5B25D;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--dark-choco);
+      color: var(--cream);
+      font-family: 'Outfit', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.6;
+      background-image: 
+        radial-gradient(circle at 15% 20%, rgba(215, 25, 32, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 85% 75%, rgba(255, 215, 0, 0.1) 0%, transparent 45%),
+        radial-gradient(circle at 50% 50%, rgba(198, 125, 56, 0.08) 0%, transparent 60%);
+    }
+
+    /* Ambient Floating Particles */
+    .floating-elements {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+    .particle {
+      position: absolute;
+      user-select: none;
+      animation: floatUp 14s linear infinite;
+      opacity: 0.25;
+      filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
+    }
+    @keyframes floatUp {
+      0% {
+        transform: translateY(105vh) rotate(0deg) scale(0.8);
+        opacity: 0;
+      }
+      10% { opacity: 0.35; }
+      90% { opacity: 0.35; }
+      100% {
+        transform: translateY(-10vh) rotate(360deg) scale(1.1);
+        opacity: 0;
+      }
+    }
+
+    /* WELCOME CURTAIN MODAL */
+    #welcome-screen {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at center, #3D1C13 0%, #150A06 100%);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+      transition: transform 0.85s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
+    }
+    #welcome-screen.hidden {
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .welcome-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--rcb-red), var(--rcb-dark-red));
+      border: 1px solid var(--rcb-gold);
+      padding: 6px 18px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #fff;
+      box-shadow: 0 4px 18px rgba(215, 25, 32, 0.4);
+      margin-bottom: 20px;
+      animation: pulseGlow 2s infinite;
+    }
+
+    .welcome-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 6vw, 4.4rem);
+      font-weight: 900;
+      background: linear-gradient(135deg, #FFF6E9 20%, var(--caramel-light) 60%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+      line-height: 1.15;
+      text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .welcome-subtitle {
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      color: var(--caramel-light);
+      margin-bottom: 35px;
+      font-weight: 400;
+    }
+
+    .welcome-btn {
+      background: linear-gradient(135deg, var(--caramel), var(--milk-choco));
+      color: #FFFDF9;
+      border: 2px solid var(--gold);
+      padding: 16px 42px;
+      border-radius: 50px;
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(198, 125, 56, 0.4), inset 0 1px 0 rgba(255,255,255,0.4);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .welcome-btn:hover {
+      transform: scale(1.06) translateY(-2px);
+      box-shadow: 0 15px 40px rgba(255, 215, 0, 0.5);
+      background: linear-gradient(135deg, var(--rcb-red), var(--milk-choco));
+    }
+
+    /* MAIN CONTENT */
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 30px 20px 80px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* HERO BANNER */
+    .hero-banner {
+      text-align: center;
+      padding: 50px 20px 30px;
+    }
+    .hero-tagline {
+      font-family: 'Caveat', cursive;
+      font-size: 2.2rem;
+      color: var(--caramel-light);
+      transform: rotate(-2deg);
+      display: inline-block;
+      margin-bottom: 5px;
+    }
+    .hero-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4.2rem);
+      font-weight: 900;
+      background: linear-gradient(to right, #FFFBF2, #FFDFA8, var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+    }
+    .hero-sub {
+      color: #d1bba4;
+      font-size: 1.15rem;
+      max-width: 580px;
+      margin: 15px auto 0;
+    }
+
+    /* SECTION CARD STYLING */
+    .card-box {
+      background: rgba(56, 34, 22, 0.7);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(224, 159, 94, 0.25);
+      border-radius: 28px;
+      padding: 35px;
+      margin: 45px 0;
+      box-shadow: 0 20px 45px rgba(15, 7, 4, 0.6);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .card-box:hover {
+      border-color: rgba(255, 215, 0, 0.45);
+    }
+    .card-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--caramel), var(--gold), var(--rcb-red));
+    }
+
+    /* POLAROID SECTION */
+    .polaroid-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px 10px;
+    }
+    .polaroid-frame {
+      background: #FFFFFF;
+      padding: 16px 16px 28px 16px;
+      border-radius: 6px;
+      box-shadow: 0 18px 38px rgba(0,0,0,0.65), 0 0 0 1px rgba(0,0,0,0.08);
+      transform: rotate(-2.5deg);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      max-width: 320px;
+      width: 100%;
+      cursor: pointer;
+      position: relative;
+    }
+    .polaroid-frame:hover {
+      transform: rotate(0deg) scale(1.04);
+      box-shadow: 0 24px 50px rgba(0,0,0,0.8), 0 0 25px rgba(255, 215, 0, 0.3);
+    }
+    .polaroid-tape {
+      position: absolute;
+      top: -14px;
+      left: 36%;
+      width: 90px;
+      height: 28px;
+      background: rgba(229, 178, 93, 0.7);
+      backdrop-filter: blur(2px);
+      transform: rotate(-4deg);
+      border-left: 2px dashed rgba(255,255,255,0.4);
+      border-right: 2px dashed rgba(255,255,255,0.4);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    .polaroid-img-box {
+      width: 100%;
+      height: 310px;
+      background: #251610;
+      border-radius: 3px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      border: 1px solid #ECECEC;
+    }
+    .polaroid-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .polaroid-frame:hover .polaroid-img-box img {
+      transform: scale(1.05);
+    }
+    .polaroid-caption {
+      font-family: 'Caveat', cursive;
+      font-size: 1.85rem;
+      color: #2D1E16;
+      margin-top: 15px;
+      font-weight: 700;
+    }
+    .photo-upload-tip {
+      margin-top: 22px;
+      font-size: 0.92rem;
+      color: var(--caramel-light);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .upload-btn-custom {
+      background: rgba(255,255,255,0.1);
+      border: 1px dashed var(--caramel-light);
+      color: var(--cream);
+      padding: 7px 18px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .upload-btn-custom:hover {
+      background: var(--caramel);
+      color: #fff;
+      border-style: solid;
+    }
+
+    /* HEARTFELT LETTER */
+    .letter-container {
+      background: #FFFDF8;
+      color: #382216;
+      border-radius: 18px;
+      padding: 42px 36px;
+      box-shadow: inset 0 0 60px rgba(198, 125, 56, 0.15), 0 15px 35px rgba(0,0,0,0.5);
+      position: relative;
+      border: 8px solid #543310;
+      background-image: repeating-linear-gradient(transparent, transparent 33px, rgba(198, 125, 56, 0.12) 34px);
+    }
+    .letter-seal {
+      position: absolute;
+      top: -24px;
+      right: 32px;
+      width: 52px;
+      height: 52px;
+      background: radial-gradient(circle, var(--rcb-red) 30%, var(--rcb-dark-red) 100%);
+      border-radius: 50%;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 1.4rem;
+      font-weight: 900;
+      border: 2px solid var(--gold);
+    }
+    .letter-header {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--milk-choco);
+      margin-bottom: 20px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .letter-body {
+      font-family: 'Caveat', cursive;
+      font-size: 1.7rem;
+      line-height: 1.75;
+      color: #2F1C12;
+      font-weight: 600;
+    }
+    .letter-sign {
+      margin-top: 25px;
+      text-align: right;
+      font-family: 'Caveat', cursive;
+      font-size: 1.9rem;
+      color: var(--rcb-red);
+      font-weight: 700;
+    }
+
+    /* RCB CRICKET SECTION */
+    .rcb-section {
+      background: linear-gradient(135deg, rgba(35, 18, 11, 0.95), rgba(139, 0, 0, 0.35));
+      border: 2px solid var(--rcb-gold);
+      position: relative;
+    }
+    .rcb-badge-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+    .rcb-tag {
+      background: var(--rcb-red);
+      color: #fff;
+      font-weight: 900;
+      padding: 6px 16px;
+      border-radius: 8px;
+      letter-spacing: 1.5px;
+      font-size: 0.9rem;
+      box-shadow: 0 0 15px rgba(215, 25, 32, 0.6);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .rcb-jersey {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--rcb-gold);
+      border: 1px solid var(--rcb-gold);
+      padding: 5px 14px;
+      border-radius: 20px;
+      background: rgba(0,0,0,0.3);
+    }
+    .rcb-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .rcb-title span {
+      background: linear-gradient(45deg, var(--gold), #FFF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .rcb-description {
+      font-size: 1.15rem;
+      color: #F8E2CF;
+      margin: 18px 0 28px;
+      max-width: 720px;
+    }
+    .kohli-quote {
+      background: rgba(0, 0, 0, 0.45);
+      border-left: 4px solid var(--rcb-red);
+      padding: 18px 22px;
+      border-radius: 0 16px 16px 0;
+      margin: 20px 0 32px;
+      font-style: italic;
+      color: #F8EDE4;
+    }
+    .rcb-action-btn {
+      background: linear-gradient(135deg, var(--rcb-red) 0%, #A60C12 100%);
+      color: #FFFFFF;
+      font-size: 1.25rem;
+      font-weight: 800;
+      border: 2px solid var(--gold);
+      padding: 18px 36px;
+      border-radius: 50px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 10px 25px rgba(215, 25, 32, 0.5);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .rcb-action-btn:hover {
+      transform: scale(1.05) translateY(-3px);
+      box-shadow: 0 15px 35px rgba(255, 215, 0, 0.6);
+      border-color: #fff;
+    }
+    .rcb-action-btn:active {
+      transform: scale(0.98);
+    }
+
+    /* INTERACTIVE BROWNIE SECTION */
+    .brownie-stage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 20px 10px;
+    }
+    .brownie-box-visual {
+      width: 250px;
+      height: 200px;
+      position: relative;
+      margin: 25px auto;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .brownie-box-visual:hover {
+      transform: scale(1.05);
+    }
+    /* SVG Brownie & Bite animations */
+    .brownie-svg {
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 14px 22px rgba(0,0,0,0.6));
+    }
+    .bite-badge {
+      background: var(--caramel);
+      color: #FFFDF9;
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 15px;
+      display: inline-block;
+    }
+    .brownie-secret-note {
+      min-height: 70px;
+      background: rgba(35, 18, 11, 0.85);
+      border: 1px solid var(--caramel);
+      padding: 16px 24px;
+      border-radius: 18px;
+      font-family: 'Caveat', cursive;
+      font-size: 1.6rem;
+      color: var(--gold);
+      margin-top: 18px;
+      max-width: 520px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+    .bite-btn {
+      background: linear-gradient(135deg, var(--caramel) 0%, var(--milk-choco) 100%);
+      color: #fff;
+      font-size: 1.15rem;
+      font-weight: 700;
+      border: 2px solid var(--caramel-light);
+      padding: 14px 34px;
+      border-radius: 50px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+    }
+    .bite-btn:hover {
+      transform: translateY(-2px) scale(1.05);
+      background: linear-gradient(135deg, var(--caramel-light) 0%, var(--caramel) 100%);
+    }
+
+    /* INTERACTIVE CAKE & CANDLES */
+    .cake-section {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .cake-container {
+      position: relative;
+      width: 260px;
+      height: 220px;
+      margin: 30px auto 10px;
+    }
+    /* SVG Cake with Candles */
+    .cake-svg {
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 15px 25px rgba(0,0,0,0.6));
+    }
+    .candle-flame {
+      transform-origin: center bottom;
+      animation: flicker 1.2s ease-in-out infinite alternate;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .candle-flame.blown-out {
+      opacity: 0 !important;
+      transform: scale(0.1) translateY(-10px);
+    }
+    @keyframes flicker {
+      0% { transform: scale(1) rotate(-2deg); filter: drop-shadow(0 0 6px #FFA500); }
+      50% { transform: scale(1.15, 1.2) rotate(3deg); filter: drop-shadow(0 0 12px #FF4500); }
+      100% { transform: scale(0.95, 0.9) rotate(-1deg); filter: drop-shadow(0 0 8px #FFD700); }
+    }
+    .smoke {
+      opacity: 0;
+      transform: translateY(0);
+      transition: all 1s ease;
+    }
+    .smoke.rising {
+      opacity: 0.8;
+      transform: translateY(-30px);
+    }
+
+    .wish-btn {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+      color: #1A0D08;
+      font-size: 1.15rem;
+      font-weight: 800;
+      border: none;
+      padding: 15px 36px;
+      border-radius: 50px;
+      cursor: pointer;
+      margin-top: 25px;
+      transition: all 0.3s;
+      box-shadow: 0 8px 24px rgba(255, 215, 0, 0.35);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .wish-btn:hover {
+      transform: scale(1.05) translateY(-2px);
+      box-shadow: 0 12px 30px rgba(255, 215, 0, 0.55);
+    }
+    .wish-status {
+      font-family: 'Caveat', cursive;
+      font-size: 1.7rem;
+      color: var(--gold);
+      margin-top: 15px;
+      min-height: 38px;
+    }
+
+    /* SECRET ENVELOPE SECTION */
+    .envelope-section {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 10px;
+    }
+    .envelope-wrapper {
+      position: relative;
+      width: 320px;
+      height: 220px;
+      background: #4A2C1D;
+      border-radius: 12px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.7);
+      cursor: pointer;
+      margin: 30px auto;
+      perspective: 1000px;
+      border: 3px solid var(--caramel);
+      transition: transform 0.4s;
+    }
+    .envelope-wrapper:hover {
+      transform: translateY(-5px);
+    }
+    .envelope-flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 157px solid transparent;
+      border-right: 157px solid transparent;
+      border-top: 110px solid #5C3724;
+      transform-origin: top;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 4;
+    }
+    .envelope-wrapper.open .envelope-flap {
+      transform: rotateX(180deg);
+      z-index: 1;
+    }
+    .envelope-pocket {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 157px solid #3E2316;
+      border-right: 157px solid #3E2316;
+      border-bottom: 110px solid #351C11;
+      border-top: 110px solid transparent;
+      border-radius: 0 0 10px 10px;
+      z-index: 3;
+    }
+    .envelope-letter {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      right: 15px;
+      bottom: 15px;
+      background: #FFFDF8;
+      border-radius: 8px;
+      padding: 20px;
+      color: #2D1A10;
+      font-family: 'Caveat', cursive;
+      font-size: 1.35rem;
+      line-height: 1.45;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.6s;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      border: 1px dashed var(--caramel);
+    }
+    .envelope-wrapper.open .envelope-letter {
+      transform: translateY(-130px) scale(1.08);
+      z-index: 5;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.7);
+    }
+    .envelope-heart-seal {
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 44px;
+      height: 44px;
+      background: var(--rcb-red);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.2rem;
+      border: 2px solid var(--gold);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      z-index: 5;
+      transition: opacity 0.3s;
+    }
+    .envelope-wrapper.open .envelope-heart-seal {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 60px 20px 40px;
+      position: relative;
+      border-top: 1px solid rgba(224, 159, 94, 0.2);
+      background: rgba(26, 13, 8, 0.8);
+      margin-top: 60px;
+    }
+    .footer-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 900;
+      color: #FFFDF9;
+      margin-bottom: 8px;
+    }
+    .footer-subtitle {
+      font-family: 'Caveat', cursive;
+      font-size: 2.2rem;
+      color: var(--caramel-light);
+      margin-bottom: 25px;
+    }
+    .footer-credits {
+      font-size: 0.95rem;
+      color: #a8917e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    /* GENERAL UTILITIES & ANIMATIONS */
+    .section-title-wrap {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .section-pill {
+      display: inline-block;
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(255, 215, 0, 0.12);
+      padding: 5px 16px;
+      border-radius: 30px;
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 800;
+      color: #FFFDF9;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); box-shadow: 0 4px 18px rgba(215, 25, 32, 0.4); }
+      50% { transform: scale(1.04); box-shadow: 0 6px 26px rgba(215, 25, 32, 0.7); }
+    }
+
+    /* Screen shake for Kohli celebration */
+    .screen-shake {
+      animation: shake 0.6s cubic-bezier(.36,.07,.19,.97) both;
+    }
+    @keyframes shake {
+      10%, 90% { transform: translate3d(-2px, 0, 0); }
+      20%, 80% { transform: translate3d(4px, 0, 0); }
+      30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+      40%, 60% { transform: translate3d(6px, 0, 0); }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .card-box {
+        padding: 24px 18px;
+        margin: 30px 0;
+      }
+      .letter-container {
+        padding: 28px 18px;
+      }
+      .letter-body {
+        font-size: 1.45rem;
+      }
+      .rcb-badge-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FLOATING BACKGROUND PARTICLES -->
+  <div class="floating-elements" id="floating-elements"></div>
+
+  <!-- 1. ANIMATED WELCOME SCREEN -->
+  <div id="welcome-screen">
+    <div class="welcome-badge">
+      🏏 RCB LOVER • CHOCOLATE CRAVER 🍫
+    </div>
+    <h1 class="welcome-title">HAPPY BIRTHDAY, SARTHAK! ❤️</h1>
+    <p class="welcome-subtitle">A little sweetness made just for you!</p>
+    <button class="welcome-btn" id="openSurpriseBtn">
+      <span>Open Your Surprise</span>
+      <span style="font-size: 1.4rem;">🎁</span>
+    </button>
+  </div>
+
+  <!-- MAIN CONTAINER -->
+  <div class="container">
+
+    <!-- HERO HEADER -->
+    <header class="hero-banner">
+      <span class="hero-tagline">To the sweetest guy in the world...</span>
+      <h1 class="hero-heading">Celebrating Sarthak Day! ✨</h1>
+      <p class="hero-sub">Where fudgy chocolate brownies meet pure RCB fire. Today is all about you!</p>
+    </header>
+
+    <!-- 2. PHOTO POLAROID SECTION -->
+    <section class="card-box">
+      <div class="section-title-wrap">
+        <span class="section-pill">CHEF'S SPECIAL RECIPE</span>
+        <h2 class="section-title">The Star of the Day</h2>
+      </div>
+
+      <div class="polaroid-wrapper">
+        <div class="polaroid-frame" id="polaroidFrame" title="Click to upload/change photo!">
+          <div class="polaroid-tape"></div>
+          <div class="polaroid-img-box">
+            <!-- Default cute placeholder image that she can replace with 1 click -->
+            <img id="sarthakPhoto" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop" alt="Sarthak" />
+          </div>
+          <div class="polaroid-caption">The birthday boy himself! ❤️</div>
+        </div>
+
+        <!-- Easy Photo Uploader -->
+        <div class="photo-upload-tip">
+          <label for="photoUpload" class="upload-btn-custom">
+            📷 Click here to put Sarthak's real photo
+          </label>
+          <input type="file" id="photoUpload" accept="image/*" style="display: none;" />
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. HEARTFELT LETTER SECTION -->
+    <section class="card-box">
+      <div class="section-title-wrap">
+        <span class="section-pill">FROM MY HEART</span>
+        <h2 class="section-title">A Sweet Little Letter For You</h2>
+      </div>
+
+      <div class="letter-container">
+        <div class="letter-seal">S</div>
+        <div class="letter-header">Dearest Sarthak,</div>
+        <div class="letter-body">
+          Happy Birthday to my absolute favourite human! ❤️<br><br>
+          On your special day, I wish you an ocean of happiness, towering success in everything you dream of, endless radiant smiles, and unforgettable memories that you'll cherish forever.<br><br>
+          You bring so much warmth, laughter, and effortless comfort into my life — just like that first bite of a warm, fudgy chocolate brownie straight out of the oven. Thank you for being you, for your kindness, your spirit, and that unmatched passion with which you cheer for your favourite team.<br><br>
+          May this coming year give you all the victories you deserve — both in life and on the cricket pitch!
+        </div>
+        <div class="letter-sign">
+          Forever cheering for you,<br>
+          With all my love ❤️🍫
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. RCB & VIRAT KOHLI SECTION -->
+    <section class="card-box rcb-section" id="rcbSection">
+      <div class="rcb-badge-row">
+        <div class="rcb-tag">
+          <span>🦁</span>
+          <span>ROYAL CHALLENGERS BANGALORE</span>
+        </div>
+        <div class="rcb-jersey">
+          JERSEY #18 • VIRAT KOHLI VIBES 🔥
+        </div>
+      </div>
+
+      <h2 class="rcb-title">Ee Sala Cup Namde! 🏆 <span>#PlayBold</span></h2>
+      <p class="rcb-description">
+        No birthday for Sarthak is complete without the roaring red & gold! For the man with King Kohli’s determination, unyielding passion, and a heart of pure gold: this special corner is dedicated to your true cricket spirit.
+      </p>
+
+      <div class="kohli-quote">
+        "Self-belief and hard work will always earn you success." — Here's to you smashing every ball out of the park this year, Sarthak! 💥🏏
+      </div>
+
+      <div style="text-align: center; margin-top: 20px;">
+        <button class="rcb-action-btn" id="kohliBtn">
+          <span>Celebrate Like King Kohli!</span>
+          <span>🦁🔥</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 5. INTERACTIVE BROWNIE SECTION -->
+    <section class="card-box">
+      <div class="section-title-wrap">
+        <span class="section-pill">BAKED WITH LOVE</span>
+        <h2 class="section-title">The Ultimate Fudgy Brownie</h2>
+      </div>
+
+      <div class="brownie-stage">
+        <div class="bite-badge" id="biteCountBadge">Bites Taken: 0 / 4</div>
+
+        <!-- SVG Brownie with chocolate drizzle & bite state -->
+        <div class="brownie-box-visual" id="brownieGraphic">
+          <svg class="brownie-svg" viewBox="0 0 240 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Brownie base shadow -->
+            <rect x="25" y="145" width="190" height="25" rx="12" fill="rgba(0,0,0,0.3)" />
+
+            <!-- Main Brownie Block -->
+            <path id="brownieBase" d="M30 50 C30 40, 210 40, 210 50 L215 135 C215 145, 25 145, 25 135 Z" fill="#3D2115" stroke="#25120A" stroke-width="3"/>
+            
+            <!-- Brownie Crumb Texture -->
+            <ellipse cx="65" cy="85" rx="8" ry="4" fill="#2B150C" />
+            <ellipse cx="140" cy="115" rx="10" ry="5" fill="#2B150C" />
+            <ellipse cx="180" cy="75" rx="7" ry="4" fill="#2B150C" />
+            <ellipse cx="100" cy="65" rx="12" ry="5" fill="#2B150C" />
+
+            <!-- Chocolate Lava Drizzle -->
+            <path d="M30 52 Q60 85 90 55 T150 75 T210 50" fill="none" stroke="#220F07" stroke-width="10" stroke-linecap="round"/>
+            <path d="M45 52 Q70 95 95 60 T165 80 T200 52" fill="none" stroke="#542B1A" stroke-width="4" stroke-linecap="round"/>
+
+            <!-- Golden Caramel Sauce Drops -->
+            <circle cx="85" cy="98" r="5" fill="#D9822B" />
+            <circle cx="160" cy="100" r="4.5" fill="#D9822B" />
+            <circle cx="120" cy="125" r="3.5" fill="#FFD700" />
+
+            <!-- White Choco Chips -->
+            <polygon points="50,60 56,66 48,70" fill="#FFF4E0" />
+            <polygon points="120,50 128,54 122,60" fill="#FFF4E0" />
+            <polygon points="175,95 182,100 174,106" fill="#FFF4E0" />
+
+            <!-- Interactive Bite Masks (Hidden by default, shown sequentially) -->
+            <circle id="bite1" cx="30" cy="50" r="28" fill="#23120B" style="display:none;" />
+            <circle id="bite2" cx="210" cy="50" r="30" fill="#23120B" style="display:none;" />
+            <circle id="bite3" cx="120" cy="140" r="32" fill="#23120B" style="display:none;" />
+          </svg>
+        </div>
+
+        <button class="bite-btn" id="biteBtn">
+          <span>Take a Bite</span>
+          <span>🍫😋</span>
+        </button>
+
+        <div class="brownie-secret-note" id="brownieMessage">
+          ✨ Click "Take a Bite" to unlock sweet love notes!
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. INTERACTIVE BIRTHDAY CAKE & CANDLES -->
+    <section class="card-box cake-section">
+      <div class="section-title-wrap">
+        <span class="section-pill">TIME FOR CELEBRATION</span>
+        <h2 class="section-title">Make a Birthday Wish</h2>
+      </div>
+
+      <div class="cake-container">
+        <svg class="cake-svg" viewBox="0 0 260 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Plate -->
+          <ellipse cx="130" cy="195" rx="100" ry="18" fill="#E8D5C4" stroke="#C69214" stroke-width="3" />
+
+          <!-- Cake Bottom Layer (Chocolate Brownie) -->
+          <rect x="50" y="125" width="160" height="55" rx="12" fill="#3E2316" stroke="#25120A" stroke-width="2" />
+          <!-- Caramel filling stripe -->
+          <rect x="50" y="148" width="160" height="8" fill="#D9822B" />
+
+          <!-- Cake Top Layer (Vanilla Cream & Choco) -->
+          <rect x="70" y="85" width="120" height="45" rx="10" fill="#4E2E1D" stroke="#25120A" stroke-width="2" />
+          <!-- Cream Frosting Drips -->
+          <path d="M70 95 Q85 110 100 95 T130 110 T160 95 T190 95" fill="none" stroke="#FFF9ED" stroke-width="6" stroke-linecap="round"/>
+
+          <!-- 3 Candles -->
+          <!-- Left Candle (RCB Red) -->
+          <rect x="92" y="55" width="8" height="30" rx="3" fill="#D71920" stroke="#FFD700" stroke-width="1"/>
+          <!-- Middle Candle (Gold) -->
+          <rect x="126" y="48" width="8" height="37" rx="3" fill="#FFD700" stroke="#B8860B" stroke-width="1"/>
+          <!-- Right Candle (RCB Red) -->
+          <rect x="160" y="55" width="8" height="30" rx="3" fill="#D71920" stroke="#FFD700" stroke-width="1"/>
+
+          <!-- Candle Wicks -->
+          <line x1="96" y1="55" x2="96" y2="48" stroke="#1A0D08" stroke-width="2" />
+          <line x1="130" y1="48" x2="130" y2="40" stroke="#1A0D08" stroke-width="2" />
+          <line x1="164" y1="55" x2="164" y2="48" stroke="#1A0D08" stroke-width="2" />
+
+          <!-- Flames -->
+          <path id="flame1" class="candle-flame" d="M96 48 C93 42, 93 36, 96 32 C99 36, 99 42, 96 48 Z" fill="url(#flameGrad)" />
+          <path id="flame2" class="candle-flame" d="M130 40 C127 33, 127 26, 130 20 C133 26, 133 33, 130 40 Z" fill="url(#flameGrad)" />
+          <path id="flame3" class="candle-flame" d="M164 48 C161 42, 161 36, 164 32 C167 36, 167 42, 164 48 Z" fill="url(#flameGrad)" />
+
+          <!-- Smoke (Shown after blowing) -->
+          <path id="smokePuff" class="smoke" d="M130 35 Q125 20 135 12 T130 0" stroke="rgba(255,255,255,0.7)" stroke-width="3" stroke-linecap="round" fill="none" />
+
+          <!-- Gradient definitions -->
+          <defs>
+            <linearGradient id="flameGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+              <stop offset="0%" stop-color="#FF2A00" />
+              <stop offset="40%" stop-color="#FFAE00" />
+              <stop offset="100%" stop-color="#FFFF88" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+
+      <button class="wish-btn" id="blowCandlesBtn">
+        <span>Make a Wish & Blow Candles</span>
+        <span>🎂✨</span>
+      </button>
+
+      <div class="wish-status" id="wishText">
+        Close your eyes, make the biggest wish, and click above!
+      </div>
+    </section>
+
+    <!-- 7. SECRET CHOCOLATE ENVELOPE -->
+    <section class="card-box envelope-section">
+      <div class="section-title-wrap">
+        <span class="section-pill">TOP SECRET</span>
+        <h2 class="section-title">Tap to Open My Hidden Note</h2>
+      </div>
+
+      <div class="envelope-wrapper" id="secretEnvelope">
+        <div class="envelope-flap"></div>
+        <div class="envelope-heart-seal">❤️</div>
+        <div class="envelope-pocket"></div>
+        <div class="envelope-letter">
+          <p><strong>PS: Sarthak,</strong></p>
+          <p>Even if RCB takes a bit of time to lift trophies, loving you is a guaranteed victory every single day. You're my champion! 🏆❤️</p>
+        </div>
+      </div>
+      <p style="color: var(--caramel-light); font-size: 0.95rem; margin-top: 10px;">
+        (Click envelope to open & seal back)
+      </p>
+    </section>
+
+  </div>
+
+  <!-- 8. BEAUTIFUL FOOTER -->
+  <footer>
+    <h3 class="footer-title">Happy Birthday, My Favourite Human!</h3>
+    <p class="footer-subtitle">Stay sweet, Sarthak! ❤️</p>
+    <div class="footer-credits">
+      Crafted with love, chocolate sprinkles & RCB roaring spirit 🍫🦁🏏
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // --- 1. AMBIENT FLOATING PARTICLES (Chocolate Chips, Hearts, Cricket, Sparkles) ---
+    const particles = ['🍫', '🏏', '❤️', '✨', '🏆', '🍪', '💛'];
+    const container = document.getElementById('floating-elements');
+
+    for (let i = 0; i < 28; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      p.innerText = particles[Math.floor(Math.random() * particles.length)];
+      p.style.left = Math.random() * 98 + 'vw';
+      p.style.animationDuration = (9 + Math.random() * 10) + 's';
+      p.style.animationDelay = (Math.random() * 8) + 's';
+      p.style.fontSize = (1.1 + Math.random() * 1.5) + 'rem';
+      container.appendChild(p);
+    }
+
+    // --- SYNTHESIZED SOUNDS (Web Audio API) so everything works anywhere without external audio files! ---
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    let audioCtx = null;
+
+    function initAudio() {
+      if (!audioCtx) audioCtx = new AudioContext();
+    }
+
+    // Sweet Chime sound for surprises
+    function playChime() {
+      try {
+        initAudio();
+        const now = audioCtx.currentTime;
+        const freqs = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+        freqs.forEach((freq, idx) => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(freq, now + idx * 0.08);
+          gain.gain.setValueAtTime(0.12, now + idx * 0.08);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.08 + 0.6);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now + idx * 0.08);
+          osc.stop(now + idx * 0.08 + 0.6);
+        });
+      } catch(e) {}
+    }
+
+    // Victory Fanfare for RCB & King Kohli
+    function playFanfare() {
+      try {
+        initAudio();
+        const now = audioCtx.currentTime;
+        const notes = [440, 554.37, 659.25, 880]; // A major triumphant chord
+        notes.forEach((f, idx) => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(f, now + idx * 0.09);
+          gain.gain.setValueAtTime(0.1, now + idx * 0.09);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.09 + 0.7);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now + idx * 0.09);
+          osc.stop(now + idx * 0.09 + 0.7);
+        });
+      } catch(e) {}
+    }
+
+    // Soft "Whoosh/Bite" sound
+    function playBiteSound() {
+      try {
+        initAudio();
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.frequency.setValueAtTime(220, now);
+        osc.frequency.exponentialRampToValueAtTime(110, now + 0.15);
+        gain.gain.setValueAtTime(0.15, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(now);
+        osc.stop(now + 0.15);
+      } catch(e) {}
+    }
+
+    // --- 2. WELCOME SCREEN TRANSITION ---
+    const welcomeScreen = document.getElementById('welcome-screen');
+    const openSurpriseBtn = document.getElementById('openSurpriseBtn');
+
+    openSurpriseBtn.addEventListener('click', () => {
+      welcomeScreen.classList.add('hidden');
+      playChime();
+
+      // Launch Initial Sweet Welcome Confetti
+      confetti({
+        particleCount: 80,
+        spread: 90,
+        origin: { y: 0.6 },
+        colors: ['#D71920', '#FFD700', '#C67D38', '#FFF8E7']
+      });
+    });
+
+    // --- 3. POLAROID PHOTO UPLOAD HANDLER ---
+    const photoUpload = document.getElementById('photoUpload');
+    const sarthakPhoto = document.getElementById('sarthakPhoto');
+    const polaroidFrame = document.getElementById('polaroidFrame');
+
+    polaroidFrame.addEventListener('click', () => {
+      photoUpload.click();
+    });
+
+    photoUpload.addEventListener('change', function(e) {
+      if (this.files && this.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          sarthakPhoto.src = evt.target.result;
+          playChime();
+          confetti({
+            particleCount: 45,
+            spread: 60,
+            origin: { y: 0.4 },
+            colors: ['#FFD700', '#FFF8E7', '#C67D38']
+          });
+        };
+        reader.readAsDataURL(this.files[0]);
+      }
+    });
+
+    // --- 4. RCB & VIRAT KOHLI CELEBRATION ---
+    const kohliBtn = document.getElementById('kohliBtn');
+    const rcbSection = document.getElementById('rcbSection');
+
+    kohliBtn.addEventListener('click', () => {
+      playFanfare();
+      
+      // Screen shake effect
+      document.body.classList.add('screen-shake');
+      setTimeout(() => document.body.classList.remove('screen-shake'), 600);
+
+      // Grand dual-cannon RCB red and gold confetti barrage
+      const end = Date.now() + 2.5 * 1000;
+      const rcbColors = ['#D71920', '#FFD700', '#FFFFFF', '#000000'];
+
+      (function frame() {
+        confetti({
+          particleCount: 5,
+          angle: 60,
+          spread: 65,
+          origin: { x: 0, y: 0.7 },
+          colors: rcbColors
+        });
+        confetti({
+          particleCount: 5,
+          angle: 120,
+          spread: 65,
+          origin: { x: 1, y: 0.7 },
+          colors: rcbColors
+        });
+
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      }());
+    });
+
+    // --- 5. INTERACTIVE BROWNIE SECTION ---
+    const biteBtn = document.getElementById('biteBtn');
+    const brownieMessage = document.getElementById('brownieMessage');
+    const biteCountBadge = document.getElementById('biteCountBadge');
+    const brownieBase = document.getElementById('brownieBase');
+    const bite1 = document.getElementById('bite1');
+    const bite2 = document.getElementById('bite2');
+    const bite3 = document.getElementById('bite3');
+
+    let bites = 0;
+    const brownieNotes = [
+      "✨ First Bite: You are 100% sweeter than warm chocolate fudge!",
+      "❤️ Second Bite: 10/10 boyfriend, 10/10 smile, 10/10 my forever person!",
+      "🏏 Third Bite: Like King Kohli at the crease, you're truly in a league of your own!",
+      "🎉 Brownie Finished! Sarthak, you have stolen every single piece of my heart!"
+    ];
+
+    biteBtn.addEventListener('click', () => {
+      bites++;
+      playBiteSound();
+
+      if (bites === 1) {
+        bite1.style.display = 'block';
+        biteCountBadge.innerText = "Bites Taken: 1 / 4";
+        brownieMessage.innerText = brownieNotes[0];
+      } else if (bites === 2) {
+        bite2.style.display = 'block';
+        biteCountBadge.innerText = "Bites Taken: 2 / 4";
+        brownieMessage.innerText = brownieNotes[1];
+      } else if (bites === 3) {
+        bite3.style.display = 'block';
+        biteCountBadge.innerText = "Bites Taken: 3 / 4";
+        brownieMessage.innerText = brownieNotes[2];
+      } else if (bites === 4) {
+        biteCountBadge.innerText = "All Gone! 😋❤️";
+        brownieMessage.innerText = brownieNotes[3];
+        biteBtn.innerHTML = "<span>Brownie Devoured!</span> <span>✨</span>";
+        biteBtn.style.opacity = "0.7";
+        confetti({
+          particleCount: 50,
+          spread: 80,
+          origin: { y: 0.7 },
+          colors: ['#382216', '#C67D38', '#FFD700']
+        });
+      } else {
+        // Reset so he can eat it again!
+        bites = 0;
+        bite1.style.display = 'none';
+        bite2.style.display = 'none';
+        bite3.style.display = 'none';
+        biteCountBadge.innerText = "Bites Taken: 0 / 4";
+        brownieMessage.innerText = "✨ Fresh brownie fresh out of the oven! Click to taste again!";
+        biteBtn.innerHTML = "<span>Take a Bite</span> <span>🍫😋</span>";
+        biteBtn.style.opacity = "1";
+      }
+    });
+
+    // --- 6. CANDLE BLOWOUT INTERACTION ---
+    const blowCandlesBtn = document.getElementById('blowCandlesBtn');
+    const flame1 = document.getElementById('flame1');
+    const flame2 = document.getElementById('flame2');
+    const flame3 = document.getElementById('flame3');
+    const smokePuff = document.getElementById('smokePuff');
+    const wishText = document.getElementById('wishText');
+
+    let candlesBlown = false;
+
+    blowCandlesBtn.addEventListener('click', () => {
+      if (!candlesBlown) {
+        candlesBlown = true;
+        flame1.classList.add('blown-out');
+        flame2.classList.add('blown-out');
+        flame3.classList.add('blown-out');
+        smokePuff.classList.add('rising');
+
+        playChime();
+        wishText.innerText = "✨ Your wish has been sent to the universe for Sarthak! May it all come true! ❤️";
+        blowCandlesBtn.innerHTML = "<span>Wish Granted! Relight?</span> <span>🕯️</span>";
+
+        confetti({
+          particleCount: 100,
+          spread: 100,
+          origin: { y: 0.65 },
+          colors: ['#FFD700', '#FFF8E7', '#D71920', '#C67D38']
+        });
+      } else {
+        // Relight candles
+        candlesBlown = false;
+        flame1.classList.remove('blown-out');
+        flame2.classList.remove('blown-out');
+        flame3.classList.remove('blown-out');
+        smokePuff.classList.remove('rising');
+        wishText.innerText = "Candles relit! Make another sweet wish! 🎂";
+        blowCandlesBtn.innerHTML = "<span>Make a Wish & Blow Candles</span> <span>🎂✨</span>";
+      }
+    });
+
+    // --- 7. SECRET CHOCOLATE ENVELOPE INTERACTION ---
+    const secretEnvelope = document.getElementById('secretEnvelope');
+
+    secretEnvelope.addEventListener('click', () => {
+      secretEnvelope.classList.toggle('open');
+      playChime();
+      if (secretEnvelope.classList.contains('open')) {
+        confetti({
+          particleCount: 35,
+          spread: 55,
+          origin: { y: 0.8 },
+          colors: ['#D71920', '#FFD700', '#FFFDF9']
+        });
+      }
+    });
+  </script>
+</body>
+</html>
